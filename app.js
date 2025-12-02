@@ -1,4 +1,4 @@
-// SPEECH RECOGNITION
+// Speech Recognition
 function startSpeech() {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = "en-US";
@@ -11,33 +11,20 @@ function startSpeech() {
   recognition.start();
 }
 
-// TRANSLATION USING OPENAI API
+// Translation via Netlify Function
 async function translateText() {
   const englishText = document.getElementById("inputText").value;
 
-  if (!englishText.trim()) {
-    alert("Please type something to translate.");
-    return;
-  }
-
-  const apiKey = "YOUR_OPENAI_API_KEY";
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  const response = await fetch("/.netlify/functions/translate", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + apiKey
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: "Translate English text to Bukusu dialect of Luhya." },
-        { role: "user", content: englishText }
-      ]
-    })
+    body: JSON.stringify({ text: englishText })
   });
 
   const data = await response.json();
+
   document.getElementById("outputText").value =
     data.choices[0].message.content;
 }

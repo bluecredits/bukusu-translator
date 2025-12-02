@@ -1,12 +1,16 @@
-# Bukusu Translator
+# Bukusu Translator (Netlify Deployment)
 
-A simple web application that translates English text into the Bukusu dialect of the Luhya language.
+This version includes:
+- Frontend (HTML/CSS/JS)
+- Backend serverless function for OpenAI translation
+- Secure API key storage in Netlify environment variables
 
-## Deployment (GitHub Pages)
-1. Upload all files to a new GitHub repo.
-2. Go to Settings → Pages.
-3. Select `main` branch.
-4. Save.
+## Deployment Steps
 
-Live site will appear as:
-https://bluecredits.github.io/bukusu-translator/
+1. Upload this folder to GitHub or drag directly into Netlify.
+2. In Netlify Dashboard:
+   - Go to Site Settings -> Environment Variables
+   - Add:
+     OPENAI_API_KEY = your-key-here
+3. Deploy site.
+4. Test translator. It will now work correctly.
