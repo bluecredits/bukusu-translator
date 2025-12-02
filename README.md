@@ -1,2 +1,0 @@
-# bukusu-translator-
-bukusu translator
